@@ -39,9 +39,13 @@ def check_port(port):
     
 if len (sys.argv) == 4:
     ip = sys.argv[1]
-    port = int (sys.argv[2])
-    port2 = int(sys.argv[3])
-
+    try:
+        port = int (sys.argv[2])
+        port2 = int(sys.argv[3])
+    except:
+        print ("This port is not valid")
+        print ("Usage : ./scan.py [IP] [start port] [end port]")
+        sys.exit(-84)
     #a = check_port(port)
     #print("le retour vaux %d" % a)
     
