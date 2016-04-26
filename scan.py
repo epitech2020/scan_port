@@ -20,9 +20,9 @@ def scan_port(ip, port):
     if rep != None:
         if TCP in rep:
             if rep[TCP].flags == 0x12:
-                print ("Le port %d est ouvert" %port)
+                print ("the port %d is open" %port)
             elif rep[TCP].flags == 0x14:
-                print ("Le port %d est fermé" %port)
+                print ("the port %d is close" %port)
     else:
         print ("%s is unavaiable" %ip)
         sys.exit (-84)
