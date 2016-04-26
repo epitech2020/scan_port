@@ -12,7 +12,11 @@ except ImportError:
 
 def scan_port(ip, port):
     sp = RandShort()
-    rep = sr1(IP(dst=ip)/TCP(sport=sp,dport=port,flags="S"),timeout=0.3,verbose=0)
+    try:
+        rep = sr1(IP(dst=ip)/TCP(sport=sp,dport=port,flags="S"),timeout=0.3,verbose=0)
+    except:
+        print ("you must lauch this tool with rights root")
+        sys.exit(-84)
     if rep != None:
         if TCP in rep:
             if rep[TCP].flags == 0x12:
@@ -20,7 +24,7 @@ def scan_port(ip, port):
             elif rep[TCP].flags == 0x14:
                 print ("Le port %d est fermé" %port)
     else:
-        print ("Impossible de joindre l'IP %s" %ip)
+        print ("%s is unavaiable" %ip)
         sys.exit (-84)
         
 def check_port(port):
