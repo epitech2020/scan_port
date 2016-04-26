@@ -1,10 +1,14 @@
 #!/usr/bin/env python2.7
 # -*- coding: utf-8 -*-
 
-import logging
-logging.getLogger("scapy.runtime").setLevel(logging.ERROR)
-from scapy.all import *
 import sys
+try:
+    import logging
+    logging.getLogger("scapy.runtime").setLevel(logging.ERROR)
+    from scapy.all import *
+except ImportError:
+    print ("this program need scappy for work")
+    sys.exit(-84)
 
 def scan_port(ip, port):
     sp = RandShort()
