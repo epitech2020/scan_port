@@ -15,7 +15,7 @@ def scan_port(ip, port):
     try:
         rep = sr1(IP(dst=ip)/TCP(sport=sp,dport=port,flags="S"),timeout=0.3,verbose=0)
     except:
-        print ("you must lauch this tool with rights root")
+        print ("you must launch this tool with rights root")
         sys.exit(-84)
     if rep != None:
         if TCP in rep:
