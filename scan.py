@@ -25,18 +25,7 @@ def scan_port(ip, port):
                 print ("the port %d is close" %port)
     else:
         print ("%s is unavaiable" %ip)
-        sys.exit (-84)
         
-def check_port(port):
-    port = str(port)
-    lengt = len (port)
-    i = 0;
-    while i < lengt:
-        if port[i] == '-':
-            return 1
-        i+=1
-    return 0
-    
 if len (sys.argv) == 4:
     ip = sys.argv[1]
     try:
@@ -46,9 +35,6 @@ if len (sys.argv) == 4:
         print ("This port is not valid")
         print ("Usage : ./scan.py [IP] [start port] [end port]")
         sys.exit(-84)
-    #a = check_port(port)
-    #print("le retour vaux %d" % a)
-    
     dif = port2 - port
     while dif >= 0:
         scan_port(ip, port)
