@@ -17,6 +17,8 @@ def scan_port(ip, port):
     sp = RandShort()
     try:
         rep = sr1(IP(dst=ip)/TCP(sport=sp,dport=port,flags="S"),timeout=0.3,verbose=0)
+    except socket.error:
+        print ("invalid hostname ! check this")
     except:
         print ("you must launch this tool with rights root")
         sys.exit(-84)
@@ -56,6 +58,13 @@ def is_range_port(port, port2):
 if len (sys.argv) == 4:
     ip = sys.argv[1]
     ip_ok = is_ip(ip)
+    if ip_ok != True:
+        try:
+            data = socket.gethostbyname_ex(ip)
+            ip = data[2]
+        except Exception:
+            print ("invalid hostname ! check this")
+            sys.exit(-84)
     try:
         port = int (sys.argv[2])
         port2 = int(sys.argv[3])
