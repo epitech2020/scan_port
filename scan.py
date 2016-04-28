@@ -45,8 +45,6 @@ def is_ip(ip):
 
 def is_range_port(port, port2):
     flag = 0
-    if port > port2:
-         flag += 1
     if port > 65535:
          flag += 1
     if port2 > 65535:
@@ -66,6 +64,10 @@ if len (sys.argv) == 4:
         print ("Usage : ./scan.py [IP] [start port] [end port]")
         sys.exit(-84)
     is_range_port(port , port2)
+    if port > port2:
+        tmp = port
+        port = port2
+        port2 = tmp
     dif = port2 - port
     while dif >= 0:
         scan_port(ip, port)
