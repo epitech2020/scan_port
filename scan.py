@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 
 import sys
+import socket
 try:
     import logging
     logging.getLogger("scapy.runtime").setLevel(logging.ERROR)
@@ -9,6 +10,8 @@ try:
 except ImportError:
     print ("this program need scappy for work")
     sys.exit(-84)
+    
+################ Function scan #############
 
 def scan_port(ip, port):
     sp = RandShort()
@@ -25,9 +28,36 @@ def scan_port(ip, port):
                 print ("the port %d is close" %port)
     else:
         print ("%s is unavaiable" %ip)
-        
+
+def is_ip(ip):
+    test = ip.split('.')
+    if len (test) == 4:
+        try:
+            nb = [int(z) for z in test]
+        except ValueError:
+            return False
+        if nb[0] <= 255 and nb[1] <= 255 and nb[2] <= 255 and nb[3]:
+            return True
+        else:
+            return False
+    else:
+        return False
+
+def is_range_port(port, port2):
+    flag = 0
+    if port > port2:
+         flag += 1
+    if port > 65535:
+         flag += 1
+    if port2 > 65535:
+        flag += 1
+    if flag != 0:
+        print ("this range of port is not valid")
+        sys.exit(-84)
+
 if len (sys.argv) == 4:
     ip = sys.argv[1]
+    ip_ok = is_ip(ip)
     try:
         port = int (sys.argv[2])
         port2 = int(sys.argv[3])
@@ -35,6 +65,7 @@ if len (sys.argv) == 4:
         print ("This port is not valid")
         print ("Usage : ./scan.py [IP] [start port] [end port]")
         sys.exit(-84)
+    is_range_port(port , port2)
     dif = port2 - port
     while dif >= 0:
         scan_port(ip, port)
@@ -42,3 +73,4 @@ if len (sys.argv) == 4:
         dif = dif - 1
 else:
     print ("Usage : ./scan.py [IP] [start port] [end port]")
+    sys.exit (-84)
