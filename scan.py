@@ -9,7 +9,7 @@ try:
     from scapy.all import *
 except ImportError:
     print ("this program need scappy for work")
-    sys.exit(-84)
+    sys.exit(84)
     
 ################ Function scan #############
 
@@ -23,7 +23,7 @@ def scan_port(ip, port):
             print ("you must launch this tool with rights root")            
         else:
             print ("invalid hostname ! check this")
-        sys.exit(-84)
+        sys.exit(84)
     if rep != None:
         if TCP in rep:
             if rep[TCP].flags == 0x12:
@@ -50,7 +50,7 @@ def is_ip(ip):
 def is_range_port(port, port2):
     if (port > 65535) or (port2 > 65535):
         print ("this range of port is not valid")
-        sys.exit(-84)
+        sys.exit(84)
 
 if len (sys.argv) == 4:
     ip = sys.argv[1]
@@ -61,14 +61,14 @@ if len (sys.argv) == 4:
             ip = data[2]
         except Exception:
             print ("invalid hostname ! check this")
-            sys.exit(-84)
+            sys.exit(84)
     try:
         port = int (sys.argv[2])
         port2 = int(sys.argv[3])
     except:
         print ("This port is not valid")
         print ("Usage : ./scan.py [IP] [start port] [end port]")
-        sys.exit(-84)
+        sys.exit(84)
     is_range_port(port , port2)
     if port > port2:
         tmp = port
@@ -81,4 +81,4 @@ if len (sys.argv) == 4:
         dif = dif - 1
 else:
     print ("Usage : ./scan.py [IP] [start port] [end port]")
-    sys.exit (-84)
+    sys.exit (84)
