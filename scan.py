@@ -4,8 +4,11 @@
 import sys
 import socket
 from function import *
-
+from reverse import *
 if len (sys.argv) == 3:
+
+    if sys.argv[1] == "-r" or sys.argv[2] == "-r":
+        reversing(sys.argv)
     ip = sys.argv[1]
     ip_ok = is_ip(ip)
     if ip_ok != True:
@@ -22,8 +25,7 @@ if len (sys.argv) == 3:
         port2 = int(list_port[1])
     except:
         print ("This port is not valid")
-        print ("Usage : ./scan.py [IP] [Port start-end port]")
-        sys.exit(84)
+        usage()
     is_range_port(port , port2)
     if port > port2:
         tmp = port
@@ -35,5 +37,4 @@ if len (sys.argv) == 3:
         port = port + 1
         dif = dif - 1
 else:
-    print ("Usage : ./scan.py [IP] [Port start-end port]")
-    sys.exit (84)
+    usage()

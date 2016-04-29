@@ -8,7 +8,13 @@ try:
 except ImportError:
     print ("this program need scappy for work")
     sys.exit(84)
-    
+
+
+def usage():
+    print ("Usage : ./scan.py [IP] [Port start-end port]")
+    print ("Usage : ./scan.py [-r] [hostname]")
+    sys.exit (84)
+
 def scan_port(ip, port):
     sp = RandShort()
     try:
@@ -51,8 +57,8 @@ def is_range_port(port, port2):
 def parsing_port(port):
     list_port = port.split('-')
     if len (list_port) != 2:
-        print ("Usage : ./scan.py [IP] [Port start-end port]")
         print ("This port is not valid")
+        usage()
         sys.exit(84)
     return (list_port)
 
