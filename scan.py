@@ -52,7 +52,7 @@ def is_range_port(port, port2):
         print ("this range of port is not valid")
         sys.exit(84)
 
-if len (sys.argv) == 4:
+if len (sys.argv) == 3:
     ip = sys.argv[1]
     ip_ok = is_ip(ip)
     if ip_ok != True:
@@ -62,12 +62,18 @@ if len (sys.argv) == 4:
         except Exception:
             print ("invalid hostname ! check this")
             sys.exit(84)
+
+    list_port = sys.argv[2].split('-')
+    if len (list_port) != 2:
+        print ("Usage : ./scan.py [IP] [Port start-end port]")
+        print ("This port is not valid")
+        sys.exit(84)
     try:
-        port = int (sys.argv[2])
-        port2 = int(sys.argv[3])
+        port = int (list_port[0])
+        port2 = int(list_port[1])
     except:
         print ("This port is not valid")
-        print ("Usage : ./scan.py [IP] [start port] [end port]")
+        print ("Usage : ./scan.py [IP] [Port start-end port]")
         sys.exit(84)
     is_range_port(port , port2)
     if port > port2:
@@ -80,5 +86,5 @@ if len (sys.argv) == 4:
         port = port + 1
         dif = dif - 1
 else:
-    print ("Usage : ./scan.py [IP] [start port] [end port]")
+    print ("Usage : ./scan.py [IP] [Port start-end port]")
     sys.exit (84)
