@@ -4,13 +4,6 @@
 import sys
 import socket
 from function import *
-try:
-    import logging
-    logging.getLogger("scapy.runtime").setLevel(logging.ERROR)
-    from scapy.all import *
-except ImportError:
-    print ("this program need scappy for work")
-    sys.exit(84)
 
 if len (sys.argv) == 3:
     ip = sys.argv[1]
