@@ -1,6 +1,7 @@
 #!/usr/bin/env python2.7
 # -*- coding: utf-8 -*-
 
+import sys
 try:
     import logging
     logging.getLogger("scapy.runtime").setLevel(logging.ERROR)
