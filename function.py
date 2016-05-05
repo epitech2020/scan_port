@@ -56,10 +56,18 @@ def is_range_port(port, port2):
         sys.exit(84)
 
 def parsing_port(port):
-    list_port = port.split('-')
-    if len (list_port) != 2:
-        print ("This port is not valid")
-        usage()
-        sys.exit(84)
-    return (list_port)
+    try:
+        list_port = []
+        port1 = int(port)
+        list_port.append(port1)
+        list_port.append(port1)
+        return (list_port)
+    except ValueError:
+        list_port = port.split('-')
+        if len (list_port) != 2:
+            print ("This port is not valid")
+            usage()
+            sys.exit(84)
+        else:
+            return (list_port)
 
