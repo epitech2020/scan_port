@@ -65,7 +65,7 @@ def parsing_port(port):
     except ValueError:
         list_port = port.split('-')
         if len (list_port) != 2:
-            print ("This port is not valid")
+            print ("ports not valid")
             usage()
             sys.exit(84)
         else:
