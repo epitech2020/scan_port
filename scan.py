@@ -3,8 +3,11 @@
 
 import sys
 import socket
+from datetime import datetime
 from function import *
 from reverse import *
+from timer import *
+t1 = datetime.now();
 if len (sys.argv) == 3:
 
     if sys.argv[1] == "-r" or sys.argv[2] == "-r":
@@ -36,5 +39,7 @@ if len (sys.argv) == 3:
         scan_port(ip, port)
         port = port + 1
         dif = dif - 1
+    t2 = datetime.now();
+    display_time_work(t1, t2)
 else:
     usage()
