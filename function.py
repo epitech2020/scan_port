@@ -20,6 +20,9 @@ def scan_port(ip, port):
     sp = RandShort()
     try:
         rep = sr1(IP(dst=ip)/TCP(sport=sp,dport=port,flags="S"),timeout=0.3,verbose=0)
+    except KeyboardInterrupt:
+        print ("You pressed Ctrl+C")
+        sys.exit(84)
     except socket.error, v:
         errorcode=v[0]
         if errorcode== 1:
