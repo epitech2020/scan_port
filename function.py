@@ -16,10 +16,11 @@ def usage():
     print ("Usage : ./scan.py [-r] [hostname]")
     sys.exit (84)
 
-def scan_port(ip, port):
+def scan_port(ip, port_s, port_e):
     sp = RandShort()
+    compt = port_s
     try:
-        rep = sr1(IP(dst=ip)/TCP(sport=sp,dport=port,flags="S"),timeout=0.3,verbose=0)
+        rep = sr1(IP(dst=ip)/TCP(sport=sp,dport=(port_s, port_e),flags="S"),timeout=0.3,verbose=0)
     except KeyboardInterrupt:
         print ("You pressed Ctrl+C")
         sys.exit(84)
@@ -33,11 +34,12 @@ def scan_port(ip, port):
     if rep != None:
         if TCP in rep:
             if rep[TCP].flags == 0x12:
-                print ("%s the port %d is open" %( ip, port))
-            elif rep[TCP].flags == 0x14:
-                print ("%s the port %d is close" %( ip, port))
+                print ("%s the port %d is open" %(ip, compt))
+            #elif rep[TCP].flags == 0x14:
+                #print ("%s the port %d is close" %( ip, port))
     else:
         print ("%s is unavaiable" %ip)
+    compt += 1
 
 def is_ip(ip):
     test = ip.split('.')
