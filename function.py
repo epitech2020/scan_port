@@ -11,6 +11,21 @@ except ImportError:
     sys.exit(84)
 
 
+def init_ip(arg):
+    ip = arg
+    ip_ok = is_ip(ip)
+    if ip_ok != True:
+        try:
+            data = socket.gethostbyname_ex(ip)
+            ip = data[2]
+        except Exception:
+            print ("invalid hostname ! check this")
+            sys.exit(84)
+        return(ip)
+    else:
+        print ("invalid hostname ! check this")
+        sys.exit(84)
+        
 def usage():
     print ("Usage : ./scan.py [IP] [Port start-end port]")
     print ("Usage : ./scan.py [-r] [hostname]")
