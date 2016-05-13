@@ -35,10 +35,7 @@ if len (sys.argv) == 3:
         port = port2
         port2 = tmp
     dif = port2 - port
-    while dif >= 0:
-        scan_port(ip, port, port)
-        port = port + 1
-        dif = dif - 1
+    scan_port(ip, port, port2)
     t2 = datetime.now();
     display_time_work(t1, t2)
 else:
