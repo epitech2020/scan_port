@@ -8,8 +8,23 @@ from function import *
 from reverse import *
 from timer import *
 t1 = datetime.now();
-if len (sys.argv) == 3:
 
+if len (sys.argv) == 2:
+    ip = sys.argv[1]
+    ip_ok = is_ip(ip)
+    if ip_ok != True:
+        try:
+            data = socket.gethostbyname_ex(ip)
+            ip = data[2]
+        except Exception:
+            print ("invalid hostname ! check this")
+            sys.exit(84)
+    scan_port(ip,1,65535)
+    t2 = datetime.now();
+    display_time_work(t1, t2)
+    sys.exit(0)
+    
+elif len (sys.argv) == 3:
     if sys.argv[1] == "-r" or sys.argv[2] == "-r":
         reversing(sys.argv)
     ip = sys.argv[1]
