@@ -10,7 +10,6 @@ except ImportError:
     print ("this program need scappy for work")
     sys.exit(84)
 
-
 def init_ip(arg):
     ip = arg
     ip_ok = is_ip(ip)
@@ -79,7 +78,7 @@ def parsing_port(port):
     except ValueError:
         list_port = port.split('-')
         if len (list_port) != 2:
-            print ("ports not valid")
+            print ("this ports are not valid")
             usage()
             sys.exit(84)
         else:
