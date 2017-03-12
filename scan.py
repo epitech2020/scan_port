@@ -21,7 +21,6 @@ class Seperation(Thread):
 t1 = datetime.now();    
 if len (sys.argv) == 2:
     ip = init_ip(sys.argv[1])
-    #scan_port(ip,1,65535)
     port = 1
     port2 = 65535
     

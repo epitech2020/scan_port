@@ -6,6 +6,7 @@ try:
     import logging
     logging.getLogger("scapy.runtime").setLevel(logging.ERROR)
     from scapy.all import *
+    from time import sleep
 except ImportError:
     print ("this program need scappy for work")
     sys.exit(84)
