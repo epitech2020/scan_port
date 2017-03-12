@@ -21,7 +21,10 @@ class Seperation(Thread):
 t1 = datetime.now();    
 if len (sys.argv) == 2:
     ip = init_ip(sys.argv[1])
-    scan_port(ip,1,65535)
+    #scan_port(ip,1,65535)
+    port = 1
+    port2 = 65535
+    
 elif len (sys.argv) == 3:
     if sys.argv[1] == "-r" or sys.argv[2] == "-r":
         reversing(sys.argv)
@@ -38,24 +41,24 @@ elif len (sys.argv) == 3:
         tmp = port
         port = port2
         port2 = tmp
-    dif = port2 - port
-    div = dif / 2
-    port1e = port + div
-    port2s = port1e + 1
-    port2e = port1e + div
 
-    #on creer deux thread
-    thread_1 = Seperation(port, port1e, ip)
-    thread_2 = Seperation(port2s, port2e,ip)
-
-    # Lancement des threads
-    thread_1.start()
-    thread_2.start()
-    thread_1.join() 
-    thread_2.join() 
-
-#    scan_port(ip, port, port2)
 else:
     usage()
+dif = port2 - port
+div = dif / 2
+port1e = port + div
+port2s = port1e + 1
+port2e = port1e + div
+
+#on creer deux thread                        
+thread_1 = Seperation(port, port1e, ip)
+thread_2 = Seperation(port2s, port2e,ip)
+
+# Lancement des threads                      
+thread_1.start()
+thread_2.start()
+
+thread_1.join()
+thread_2.join()
 t2 = datetime.now();
 display_time_work(t1, t2)
