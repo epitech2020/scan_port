@@ -29,6 +29,8 @@ def usage():
     print ("Usage : ./scan.py [IP] [Port start-end port]")
     print ("Usage : ./scan.py [-r] [hostname]")
     sys.exit (84)
+    
+_number = 0
 
 def scan_port(ip, port_s, port_e):
     sp = RandShort()
@@ -44,6 +46,7 @@ def scan_port(ip, port_s, port_e):
         else:
             print ("invalid hostname ! check this")
         sys.exit(84)
+    print ("[+] IP -> %s" % (ip[_number]))
     if rep != None:
         for emis, recu in rep:
             if recu[1].flags == 0x12:
