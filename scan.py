@@ -7,7 +7,7 @@ from datetime import datetime
 from function import *
 from reverse import *
 from timer import *
-#from thread import *
+from thread import *
 
 t1 = datetime.now();    
 if len (sys.argv) == 2:
