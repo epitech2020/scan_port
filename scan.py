@@ -7,7 +7,16 @@ from datetime import datetime
 from function import *
 from reverse import *
 from timer import *
-from thread import *
+from threading import Thread
+
+class Seperation(Thread):
+    def __init__(self, port1, port2, ip):
+        Thread.__init__(self)
+        self.portd = port1
+        self.portf = port2
+        self.ip = ip
+    def run(self):
+        scan_port(self.ip, self.portd, self.portf)
 
 t1 = datetime.now();    
 if len (sys.argv) == 2:
@@ -30,7 +39,22 @@ elif len (sys.argv) == 3:
         port = port2
         port2 = tmp
     dif = port2 - port
-    scan_port(ip, port, port2)
+    div = dif / 2
+    port1e = port + div
+    port2s = port1e + 1
+    port2e = port1e + div
+
+    #on creer deux thread
+    thread_1 = Seperation(port, port1e, ip)
+    thread_2 = Seperation(port2s, port2e,ip)
+
+    # Lancement des threads
+    thread_1.start()
+    thread_2.start()
+    thread_1.join() 
+    thread_2.join() 
+
+#    scan_port(ip, port, port2)
 else:
     usage()
 t2 = datetime.now();
