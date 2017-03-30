@@ -3,6 +3,7 @@
 
 import sys
 import socket
+import os
 from datetime import datetime
 from function import *
 from reverse import *
@@ -18,7 +19,11 @@ class Seperation(Thread):
     def run(self):
         scan_port(self.ip, self.portd, self.portf)
 
-t1 = datetime.now();    
+if os.getuid() != 0:
+     print ("you must launch this tool with rights root")
+     sys.exit(84)
+
+t1 = datetime.now();
 if len (sys.argv) == 2:
     ip = init_ip(sys.argv[1])
     port = 1

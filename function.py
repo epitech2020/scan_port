@@ -42,10 +42,7 @@ def scan_port(ip, port_s, port_e):
         sys.exit(84)
     except socket.error, v:
         errorcode=v[0]
-        if errorcode== 1:
-            print ("you must launch this tool with rights root")
-        else:
-            print ("invalid hostname ! check this")
+        print ("invalid hostname ! check this")
         sys.exit(84)
     if rep != None:
         for emis, recu in rep:
