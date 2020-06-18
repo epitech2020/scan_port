@@ -8,7 +8,7 @@ try:
     from scapy.all import *
     from time import sleep
 except ImportError:
-    print ("this program need scappy for work")
+    print ("this program need scapy to work")
     sys.exit(84)
 
 def init_ip(arg):
